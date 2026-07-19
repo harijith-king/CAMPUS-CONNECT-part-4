@@ -1,0 +1,2 @@
+# CAMPUS-CONNECT-part-4
+CampusConnect's backend runs many short-lived request-handling processes and a few long-running background jobs (e.g., nightly report generation). This Part asks you to simulate how the OS would schedule these processes, fix a concurrency bug, and analyze a deadlock scenario
