@@ -1,7 +1,7 @@
 # CAMPUS-CONNECT-part-4
 CampusConnect's backend runs many short-lived request-handling processes and a few long-running background jobs (e.g., nightly report generation). This Part asks you to simulate how the OS would schedule these processes, fix a concurrency bug, and analyze a deadlock scenario
 
-Task 1 :
+# Task 1 :
 the quantum time of the sample dataset is 2
 Tie-breaking rules.
 
@@ -70,9 +70,10 @@ Without aging, **P5** remains at the lowest priority while new higher-priority p
 
 With aging, the priority of waiting processes gradually increases over time. Eventually, **P5** reaches a higher priority than the newly arriving processes and is finally scheduled. This ensures that every process gets CPU time eventually and prevents indefinite starvation.
 
+---
 
-#TASK Synchronization fix
-## output of the synchronization.py file 
+# TASK 3 Synchronization fix
+### output of the synchronization.py file 
 ```
   ========== UNSYNCHRONIZED VERSION ==========
   Expected Counter Value : 2
@@ -85,3 +86,72 @@ With aging, the priority of waiting processes gradually increases over time. Eve
   Actual Counter Value   : 200000
   Synchronization successful. Counter value is correct.
 ```
+
+---
+# TASK 4 Deadlock Analysis
+
+## Scenario
+CampusConnect backend where three processes are running at the same time:
+* **P1** – Assignment Notification Service
+* **P2** – Student Report Generation Service
+* **P3** – Enrollment Update Service
+
+The three resources used are:
+
+* **R1** – Database Connection
+* **R2** – File Lock
+* **R3** – Cache Lock
+
+Here in this scenario:
+
+* **P1** is holding the **Database Connection (R1)** and is waiting for the **File Lock (R2)**.
+* **P2** is holding the **File Lock (R2)** and is waiting for the **Cache Lock (R3)**.
+* **P3** is holding the **Cache Lock (R3)** and is waiting for the **Database Connection (R1)**.
+
+Since every process is waiting for another resource that is already being used by another process, none of them can continue, resulting in a deadlock.
+
+## Four Necessary Conditions for Deadlock
+
+### Mutual Exclusion
+
+Each resource can only be used by one process at a time, so other processes must wait until it is released.
+
+### Hold and Wait
+
+Each process is holding one resource while waiting to acquire another resource that is currently occupied.
+
+### No Preemption
+
+The operating system cannot forcibly take a resource away from a process. The process must release it voluntarily after completing its work.
+
+### Circular Wait
+
+A circular chain exists where **P1 waits for P2, P2 waits for P3, and P3 waits for P1**, creating a cycle that prevents all processes from continuing.
+
+
+# Resource Allocation Graph
+
+```text
+R1 --> P1 (Allocated)
+P1 --> R2 (Requested)
+
+R2 --> P2 (Allocated)
+P2 --> R3 (Requested)
+
+R3 --> P3 (Allocated)
+P3 --> R1 (Requested)
+```
+
+# Breaking the Deadlock
+
+If the edge **P3 → R1 (Requested)** is removed, the circular wait is broken. This allows **P3** to finish its execution and release **R3**, after which **P2** and **P1** can also continue, preventing the deadlock.
+
+# Deadlock Prevention Strategy
+
+### Strategy: Prevent Hold-and-Wait
+
+A process must request all the resources it needs at the beginning before it starts executing. If all the required resources are not available, the process must wait without holding any resources. This prevents a process from holding one resource while waiting for another, thereby eliminating the hold-and-wait condition and preventing deadlock.
+
+### Limitation
+
+This strategy can lead to poor resource utilization because a process may reserve resources that it does not need immediately. As a result, other processes may have to wait longer even though some of those reserved resources are temporarily unused.
