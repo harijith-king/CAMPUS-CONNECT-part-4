@@ -1,1 +1,51 @@
+# TASK 1  CPU SCHEDULLING
+==============================
+First Come First Serve (FCFS)
+==============================
 
+PID   Arrival  Burst  Waiting  Turnaround
+P1    0        5      0        5
+P2    1        3      4        7
+P3    2        8      6        14
+P4    3        6      13       19
+P5    4        2      18       20
+
+Average Waiting Time : 8.2
+Average Turnaround Time : 13.0
+
+====================================================
+Shortest Job First (SJF - Non Preemptive)
+====================================================
+
+PID   Arrival  Burst  Waiting  Turnaround
+...
+
+Average Waiting Time : ...
+Average Turnaround Time : ...
+
+====================================================
+Round Robin (Quantum = 2)
+====================================================
+
+PID   Arrival  Burst  Waiting  Turnaround
+...
+
+Average Waiting Time : ...
+Average Turnaround Time : ...
+
+====================================================
+Synchronization Program Output
+====================================================
+
+
+# TASK 3 SYNCHRONIZATION
+ 
+========== UNSYNCHRONIZED VERSION ==========
+Expected Counter Value : 2
+Actual Counter Value   : 1
+Race condition occurred. One increment was lost.
+
+========== SYNCHRONIZED VERSION ==========
+Expected Counter Value : 200000
+Actual Counter Value   : 200000
+Synchronization successful. Counter value is correct.
