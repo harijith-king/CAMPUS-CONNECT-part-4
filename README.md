@@ -1,16 +1,6 @@
 # CAMPUS-CONNECT-part-4
 CampusConnect's backend runs many short-lived request-handling processes and a few long-running background jobs (e.g., nightly report generation). This Part asks you to simulate how the OS would schedule these processes, fix a concurrency bug, and analyze a deadlock scenario
 
-# Task 1 :
-the quantum time of the sample dataset is 2
-Tie-breaking rules.
-
-Example
-
-Same arrival → process order
-Same burst in SJF → arrival then process ID
-Round Robin queue ordering
-
 # Task 2 priority schedulling with aging
 
 ## Step 1: The Dataset
@@ -69,23 +59,6 @@ The priority of **P5** changes.
 Without aging, **P5** remains at the lowest priority while new higher-priority processes continue arriving. Because of this, it never gets selected by the scheduler and experiences starvation.
 
 With aging, the priority of waiting processes gradually increases over time. Eventually, **P5** reaches a higher priority than the newly arriving processes and is finally scheduled. This ensures that every process gets CPU time eventually and prevents indefinite starvation.
-
----
-
-# TASK 3 Synchronization fix
-### output of the synchronization.py file 
-```
-  ========== UNSYNCHRONIZED VERSION ==========
-  Expected Counter Value : 2
-  Actual Counter Value   : 1
-  Race condition occurred. One increment was lost.
-  ```
-```
-  ========== SYNCHRONIZED VERSION ==========
-  Expected Counter Value : 200000
-  Actual Counter Value   : 200000
-  Synchronization successful. Counter value is correct.
-```
 
 ---
 # TASK 4 Deadlock Analysis
