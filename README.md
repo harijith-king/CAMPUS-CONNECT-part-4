@@ -1,6 +1,14 @@
 # CAMPUS-CONNECT-part-4
 CampusConnect's backend runs many short-lived request-handling processes and a few long-running background jobs (e.g., nightly report generation). This Part asks you to simulate how the OS would schedule these processes, fix a concurrency bug, and analyze a deadlock scenario
 
+# TASK 1 
+## Tie-Breaking and Ordering Rules
+
+* If two or more processes have the same arrival time, they are scheduled in the order they appear in the input list (Process ID order).
+* In **SJF**, if two processes have the same burst time, the scheduler uses arrival time first, then Process ID order as the tie-breaker.
+* In **Round Robin**, when a process finishes its time quantum, any newly arrived processes are added to the ready queue before the preempted process is placed at the back.
+
+
 # Task 2 priority schedulling with aging
 
 ## Step 1: The Dataset
