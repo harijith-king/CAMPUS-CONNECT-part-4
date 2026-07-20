@@ -1,38 +1,47 @@
 # TASK 1  CPU SCHEDULLING
-==============================
+============================================================
 First Come First Serve (FCFS)
-==============================
+============================================================
 
-PID   Arrival  Burst  Waiting  Turnaround
-P1    0        5      0        5
-P2    1        3      4        7
-P3    2        8      6        14
-P4    3        6      13       19
-P5    4        2      18       20
+PID   Arrival   Burst   Waiting   Turnaround
+P1    0         5       0         5
+P2    1         3       4         7
+P3    2         8       6         14
+P4    3         6       13        19
+P5    4         2       18        20
 
-Average Waiting Time : 8.2
+Average Waiting Time    : 8.2
 Average Turnaround Time : 13.0
 
-====================================================
+
+============================================================
 Shortest Job First (SJF - Non Preemptive)
-====================================================
+============================================================
 
-PID   Arrival  Burst  Waiting  Turnaround
-...
+PID   Arrival   Burst   Waiting   Turnaround
+P1    0         5       0         5
+P2    1         3       6         9
+P3    2         8       14        22
+P4    3         6       7         13
+P5    4         2       1         3
 
-Average Waiting Time : ...
-Average Turnaround Time : ...
+Average Waiting Time    : 5.6
+Average Turnaround Time : 10.4
 
-====================================================
+
+============================================================
 Round Robin (Quantum = 2)
-====================================================
+============================================================
 
-PID   Arrival  Burst  Waiting  Turnaround
-...
+PID   Arrival   Burst   Waiting   Turnaround
+P1    0         5       11        16
+P2    1         3       9         12
+P3    2         8       14        22
+P4    3         6       13        19
+P5    4         2       6         8
 
-Average Waiting Time : ...
-Average Turnaround Time : ...
-
+Average Waiting Time    : 10.6
+Average Turnaround Time : 15.4
 ====================================================
 Synchronization Program Output
 ====================================================
