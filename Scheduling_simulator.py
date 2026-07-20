@@ -14,12 +14,7 @@ class Process:
         self.waiting = 0
         self.turnaround = 0
         self.completion = 0
-        self.index = 0  # Input order (Tie breaker)
-
-
-# -----------------------------------------------------
-# Sample Dataset (5 Processes)
-# -----------------------------------------------------
+        self.index = 0 
 
 processes = [
     Process("P1", 0, 5),
@@ -33,11 +28,6 @@ for i, p in enumerate(processes):
     p.index = i
 
 TIME_QUANTUM = 2
-
-
-# -----------------------------------------------------
-# Helper Function
-# -----------------------------------------------------
 
 def print_results(title, plist):
     print("\n" + "=" * 60)
@@ -63,10 +53,7 @@ def print_results(title, plist):
     print("Average Turnaround Time :", round(total_tat / n, 2))
 
 
-# -----------------------------------------------------
 # FCFS
-# -----------------------------------------------------
-
 def fcfs(processes):
 
     plist = deepcopy(processes)
@@ -90,11 +77,7 @@ def fcfs(processes):
 
     return plist
 
-
-# -----------------------------------------------------
 # Non-Preemptive SJF
-# -----------------------------------------------------
-
 def sjf(processes):
 
     plist = deepcopy(processes)
@@ -130,11 +113,7 @@ def sjf(processes):
 
     return plist
 
-
-# -----------------------------------------------------
 # Round Robin
-# -----------------------------------------------------
-
 def round_robin(processes, quantum):
 
     plist = deepcopy(processes)
@@ -181,10 +160,7 @@ def round_robin(processes, quantum):
 
     return plist
 
-
-# -----------------------------------------------------
-# Main
-# -----------------------------------------------------
+# main function
 
 if __name__ == "__main__":
 
