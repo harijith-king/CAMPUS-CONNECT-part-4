@@ -69,3 +69,19 @@ The priority of **P5** changes.
 Without aging, **P5** remains at the lowest priority while new higher-priority processes continue arriving. Because of this, it never gets selected by the scheduler and experiences starvation.
 
 With aging, the priority of waiting processes gradually increases over time. Eventually, **P5** reaches a higher priority than the newly arriving processes and is finally scheduled. This ensures that every process gets CPU time eventually and prevents indefinite starvation.
+
+
+#TASK Synchronization fix
+## output of the synchronization.py file 
+```
+  ========== UNSYNCHRONIZED VERSION ==========
+  Expected Counter Value : 2
+  Actual Counter Value   : 1
+  Race condition occurred. One increment was lost.
+  ```
+```
+  ========== SYNCHRONIZED VERSION ==========
+  Expected Counter Value : 200000
+  Actual Counter Value   : 200000
+  Synchronization successful. Counter value is correct.
+```
